@@ -1,0 +1,74 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'BMW Type Next Arabic', Arial, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+header {
+    background: rgb(213, 214, 215);  /*צבע רקע*/
+    padding: 1rem;    /*הגודל של התפרטי*/
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); /*הגבול בצורת צל*/
+}
+
+.menu {
+    display:flex;/*שיהיה מאוזן*/
+    gap: 2rem;/*רווח*/
+    list-style: none;/*בישביל שלא יהיה את הנקודות*/
+}
+
+.menu a {
+    color: #333;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    padding: 2rem;
+}
+
+.hero-image {
+    max-width: 100%;
+    height: auto;
+}
+
+.models-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.models-grid img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+}
+
+.models-grid img:hover {
+    transform: scale(1.05);
+}
+
+/* contact.html - טופס יצירת קשר */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+}

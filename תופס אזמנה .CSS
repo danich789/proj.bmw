@@ -1,0 +1,17 @@
+
+/* עיצוב הודעות שגיאה - צבע אדום, גודל קטן יותר, ומוסתר כברירת מחדל */
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 4px;
+    display: none; /* הודעות שגיאה מוסתרות כברירת מחדל עד שהולידציה נכשלת */
+}
+
+/* עיצוב שדות קלט לא תקינים - מסגרת אדומה */
+input.invalid, select.invalid {
+    border-color: red;
+}
+
+body{
+    background-image: ;
+}

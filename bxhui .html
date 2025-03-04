@@ -1,0 +1,182 @@
+```html
+<!DOCTYPE html>
+<html dir="rtl">
+<head>
+    <style>
+        .error { /* סגנון עבור הודעות שגיאה */
+            color: red;
+            font-size: 13px;
+            margin-top: 4px;
+            display: none;
+        }
+        
+        input.invalid, select.invalid { /* סגנון עבור שדות לא תקינים */
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>טופס הזמנת רכב</h1>
+    
+    <form id="carOrderForm">
+        <div>
+            <h2>פרטי הרכב המבוקש</h2>
+            
+            <div>
+                <label for="carModel">דגם רכב </label>
+                <select id="carModel" name="carModel" required>
+                    <option value="">יש לבחור דגם</option>
+                    <option value="mercedes-eclass">מרצדס E-Class</option>
+                    <option value="bmw-5series">BMW סדרה 5</option>
+                    <option value="audi-a6">אאודי A6</option>
+                    <option value="lexus-es">לקסוס ES</option>
+                    <option value="tesla-model3">טסלה מודל 3</option>
+                </select>
+                <div class="error" id="carModelError">אנא בחר דגם רכב</div>
+            </div>
+            
+            <div>
+                <label for="carYear">שנת ייצור *</label>
+                <select id="carYear" name="carYear" required>
+                    <option value="">יש לבחור שנה</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <div class="error" id="carYearError">אנא בחר שנת ייצור</div>
+            </div>
+            
+            <div>
+                <label for="carColor">צבע *</label>
+                <select id="carColor" name="carColor" required>
+                    <option value="">יש לבחור צבע</option>
+                    <option value="black">שחור</option>
+                    <option value="white">לבן</option>
+                    <option value="silver">כסף</option>
+                    <option value="gray">אפור</option>
+                    <option value="blue">כחול</option>
+                    <option value="red">אדום</option>
+                </select>
+                <div class="error" id="carColorError">אנא בחר צבע</div>
+            </div>
+        </div>
+        
+        <div>
+            <h2>פרטי הלקוח</h2>
+            
+            <div>
+                <label for="firstName">שם פרטי *</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <div class="error" id="firstNameError">אנא הזן שם פרטי (באותיות בעברית בלבד)</div>
+            </div>
+            
+            <div>
+                <label for="lastName">שם משפחה *</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <div class="error" id="lastNameError">אנא הזן שם משפחה (באותיות בעברית בלבד)</div>
+            </div>
+            
+            <div>
+                <label for="idNumber">תעודת זהות *</label>
+                <input type="text" id="idNumber" name="idNumber" required>
+                <div class="error" id="idNumberError">אנא הזן מספר תעודת זהות תקין (9 ספרות)</div>
+            </div>
+            
+            <div>
+                <label for="phone">מספר טלפון נייד *</label>
+                <input type="tel" id="phone" name="phone" required>
+                <div class="error" id="phoneError">אנא הזן מספר טלפון נייד תקין</div>
+            </div>
+            
+            <div>
+                <label for="email">דואר אלקטרוני *</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError">אנא הזן כתובת אימייל תקינה</div>
+            </div>
+        </div>
+        
+        <div>
+            <input type="checkbox" id="termsAgree" name="termsAgree" required>
+            <label for="termsAgree">אני מסכים לתנאי השימוש *</label>
+            <div class="error" id="termsAgreeError">עליך להסכים לתנאי השימוש</div>
+        </div>
+        
+        <div>
+            <button type="submit">שלח הזמנה</button>
+            <button type="reset">נקה טופס</button>
+        </div>
+    </form>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() { // פונקציה שרצה לאחר שהדף נטען
+            const form = document.getElementById('carOrderForm'); // אחזור אלמנט הטופס
+            const fields = { // הגדרת שדות הטופס וכללי הוולידציה שלהם
+                carModel: {
+                    element: document.getElementById('carModel'),
+                    error: document.getElementById('carModelError'),
+                    validate: value => value !== ''
+                },
+                carYear: {
+                    element: document.getElementById('carYear'),
+                    error: document.getElementById('carYearError'),
+                    validate: value => value !== ''
+                },
+                carColor: {
+                    element: document.getElementById('carColor'),
+                    error: document.getElementById('carColorError'),
+                    validate: value => value !== ''
+                },
+                firstName: {
+                    element: document.getElementById('firstName'),
+                    error: document.getElementById('firstNameError'),
+                    validate: value => /^[\u0590-\u05FF\s]{2,}$/.test(value)
+                },
+                lastName: {
+                    element: document.getElementById('lastName'),
+                    error: document.getElementById('lastNameError'),
+                    validate: value => /^[\u0590-\u05FF\s]{2,}$/.test(value)
+                },
+                idNumber: {
+                    element: document.getElementById('idNumber'),
+                    error: document.getElementById('idNumberError'),
+                    validate: validateIsraeliID
+                },
+                phone: {
+                    element: document.getElementById('phone'),
+                    error: document.getElementById('phoneError'),
+                    validate: value => /^05\d-?\d{7}$/.test(value.replace(/\D/g, ''))
+                },
+                email: {
+                    element: document.getElementById('email'),
+                    error: document.getElementById('emailError'),
+                    validate: value => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)
+                },
+                termsAgree: {
+                    element: document.getElementById('termsAgree'),
+                    error: document.getElementById('termsAgreeError'),
+                    validate: value => value
+                }
+            };
+            ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+            // ולידציה לכל שדה כשעוזבים אותו
+            Object.keys(fields).forEach(fieldName => { // מעבר על כל שדות הטופס
+                const field = fields[fieldName]; // אחזור שדה ספציפי
+                field.element.addEventListener('blur', () => { // הוספת מאזין לאירוע 'blur' (יציאה מהשדה)
+                    validateField(fieldName); // הפעלת פונקציית ולידציה
+                });
+                
+                field.element.addEventListener('input', () => { // הוספת מאזין לאירוע 'input' (שינוי ערך השדה)
+                    field.element.classList.remove('invalid'); // הסרת סגנון שדה לא תקין
+                    field.error.style.display = 'none'; // הסתרת הודעת שגיאה
+                });
+            });
+            
+            // טיפול בשליחת הטופס
+            form.addEventListener('submit', function(e) { // הוספת מאזין לאירוע 'submit' (שליחת הטופס)
+                e.preventDefault(); // מניעת התנהגות ברירת מחדל של הטופס
+                
+                let isValid = true; // הגדרת משתנה לבדיקת תקינות הטופס
+                Object.keys(fields).forEach(fieldName => { // מעבר על כל שדות הטופס
+                    if (!validateField(fieldName)) { // בדיקת תקינות שדה
+                        isValid = false;

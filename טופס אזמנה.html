@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<!-- מגדיר כיוון טקסט מימין לשמאל עבור תמיכה בעברית -->
+<html dir="rtl">
+<head>
+    <link rel="stylesheet" href ="תופס אזמנה .CSS">
+    <script src= "תופס אזמנה.js"></script>
+
+</head>
+<body>
+    <!-- כותרת ראשית של הטופס -->
+    <h1>טופס הזמנת רכב</h1>
+    
+    <!-- טופס הזמנת רכב עם מזהה ייחודי לשימוש ב-JavaScript -->
+    <form id="carOrderForm">
+        <!-- חלק ראשון: פרטי הרכב המבוקש -->
+        <div>
+            <h2>פרטי הרכב המבוקש</h2>
+            
+            <!-- בחירת דגם רכב -->
+            <div>
+                <label for="carModel">דגם רכב </label>
+                <!-- תיבת בחירה עם אפשרויות שונות של דגמי רכב -->
+                <select id="carModel" name="carModel" required>
+                    <option value="">יש לבחור דגם</option>
+                    <option value="mercedes-eclass">מרצדס E-Class</option>
+                    <option value="bmw-5series">BMW סדרה 5</option>
+                    <option value="audi-a6">אאודי A6</option>
+                    <option value="lexus-es">לקסוס ES</option>
+                    <option value="tesla-model3">טסלה מודל 3</option>
+                </select>
+                <!-- הודעת שגיאה שתוצג אם לא נבחר דגם -->
+                <div class="error" id="carModelError">אנא בחר דגם רכב</div>
+            </div>
+            
+            <!-- בחירת שנת ייצור -->
+            <div>
+                <label for="carYear">שנת ייצור </label>
+                <!-- תיבת בחירה עם אפשרויות של שנות ייצור -->
+                <select id="carYear" name="carYear" required>
+                    <option value="">יש לבחור שנה</option>
+                    <option value="2025">2025</option>
+                    <option value="2024">2024</option>
+                    <option value="2023">2023</option>
+                    <option value="2022">2022</option>
+                </select>
+                <!-- הודעת שגיאה שתוצג אם לא נבחרה שנה -->
+                <div class="error" id="carYearError">אנא בחר שנת ייצור</div>
+            </div>
+            
+            <!-- בחירת צבע הרכב -->
+            <div>
+                <label for="carColor">צבע </label>
+                <!-- תיבת בחירה עם אפשרויות צבעים -->
+                <select id="carColor" name="carColor" required>
+                    <option value="">יש לבחור צבע</option>
+                    <option value="black">שחור</option>
+                    <option value="white">לבן</option>
+                    <option value="silver">כסף</option>
+                    <option value="gray">אפור</option>
+                    <option value="blue">כחול</option>
+                    <option value="red">אדום</option>
+                </select>
+                <!-- הודעת שגיאה שתוצג אם לא נבחר צבע -->
+                <div class="error" id="carColorError">אנא בחר צבע</div>
+            </div>
+        </div>
+        
+        <!-- חלק שני: פרטי הלקוח -->
+        <div>
+            <h2>פרטי הלקוח</h2>
+            
+            <!-- שדה שם פרטי -->
+            <div>
+                <label for="firstName">שם פרטי </label>
+                <!-- שדה טקסט להזנת שם פרטי, מסומן כחובה -->
+                <input type="text" id="firstName" name="firstName" required>
+                <!-- הודעת שגיאה שתוצג אם השם הפרטי אינו תקין -->
+                <div class="error" id="firstNameError">אנא הזן שם פרטי (באותיות בעברית בלבד)</div>
+            </div>
+            
+            <!-- שדה שם משפחה -->
+            <div>
+                <label for="lastName">שם משפחה </label>
+                <!-- שדה טקסט להזנת שם משפחה, מסומן כחובה -->
+                <input type="text" id="lastName" name="lastName" required>
+                <!-- הודעת שגיאה שתוצג אם שם המשפחה אינו תקין -->
+                <div class="error" id="lastNameError">אנא הזן שם משפחה (באותיות בעברית בלבד)</div>
+            </div>
+            
+            <!-- שדה תעודת זהות -->
+            <div>
+                <label for="idNumber">תעודת זהות </label>
+                <!-- שדה טקסט להזנת מספר תעודת זהות, מסומן כחובה -->
+                <input type="text" id="idNumber" name="idNumber" required>
+                <!-- הודעת שגיאה שתוצג אם מספר ת.ז. אינו תקין -->
+                <div class="error" id="idNumberError">אנא הזן מספר תעודת זהות תקין (9 ספרות)</div>
+            </div>
+            
+            <!-- שדה מספר טלפון -->
+            <div>
+                <label for="phone">מספר טלפון נייד </label>
+                <!-- שדה טלפון להזנת מספר טלפון נייד, מסומן כחובה -->
+                <input type="tel" id="phone" name="phone" required>
+                <!-- הודעת שגיאה שתוצג אם מספר הטלפון אינו תקין -->
+                <div class="error" id="phoneError">אנא הזן מספר טלפון נייד תקין</div>
+            </div>
+            
+            <!-- שדה דואר אלקטרוני -->
+            <div>
+                <label for="email">דואר אלקטרוני </label>
+                <!-- שדה אימייל להזנת כתובת דואר אלקטרוני, מסומן כחובה -->
+                <input type="email" id="email" name="email" required>
+                <!-- הודעת שגיאה שתוצג אם כתובת האימייל אינה תקינה -->
+                <div class="error" id="emailError">אנא הזן כתובת אימייל תקינה</div>
+            </div>
+        </div>
+        
+        <!-- הסכמה לתנאי השימוש -->
+        <div>
+            <!-- תיבת סימון להסכמה לתנאי השימוש, מסומנת כחובה -->
+            <input type="checkbox" id="termsAgree" name="termsAgree" required>
+            <label for="termsAgree">אני מסכים לתנאי השימוש *</label>
+            <!-- הודעת שגיאה שתוצג אם לא סומנה ההסכמה -->
+            <div class="error" id="termsAgreeError">עליך להסכים לתנאי השימוש</div>
+        </div>
+        
+        <!-- כפתורי פעולה -->
+        <div>
+            <!-- כפתור לשליחת הטופס -->
+            <button type="submit">שלח הזמנה</button>
+            <!-- כפתור לאיפוס הטופס -->
+            <button type="reset">נקה טופס</button>
+        </div>
+    </form>
+
+</body>
+</html>
